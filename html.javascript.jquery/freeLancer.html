@@ -1,0 +1,554 @@
+<html>
+<meta charset="UTF-8">
+<head>
+	<title></title>
+
+	<!-------------------------------------------------------->
+	<!-- common_func.js 파일안의 자스 코딩 수입하기-->
+	<!-------------------------------------------------------->
+	<script src="common_func.js"></script>
+
+	<script>
+		//**********************************************
+		// 회원가입 화면에 입력한 데이터의 유효성 체크를 해주는
+		// checkMemRegForm 함수 선언
+		//**********************************************
+		function freeLancerForm(){
+			//---------------------------------------------------
+			// 변수 formObj 선언하고 <form name="freeLancer" > 태그를 관리하는
+			// Form 객체의 메위주 저장하기
+			//---------------------------------------------------
+			var formObj = document.freeLancerRegForm;
+
+			//---------------------------------------------------
+			// <1>유저가 입력한 [회원명] 가져와서 변수 mem_name 에 저장하기
+			// <2>유저가 입력한 [아이디] 가져와서 변수 uid 에 저장하기
+			// <3>유저가 입력한 [암호] 가져와서 변수 pwd 에 저장하기
+			// <4>유저가 입력한 [주소] 가져와서 변수 addr 에 저장하기
+			//---------------------------------------------------
+			var resume_reg_year = formObj.resume_reg_year.value;
+			var resume_reg_month = formObj.resume_reg_month.value;
+			var resume_reg_day = formObj.resume_reg_day.value;
+			var name = formObj.name.value;
+			var gender = formObj.gender.value;
+			var birth_year = formObj.birth_year.value;
+			var phone_num = formObj.phone_num.value;
+			var email = formObj.email.value;
+			var city = formObj.city.value;
+			var district = formObj.district.value;
+			var fianl_grade = formObj.fianl_grade.value;
+			var develope_reg_year = formObj.develope_reg_year.value;
+			var develope_reg_month = formObj.develope_reg_month.value;
+			var hope_salary = formObj.hope_salary.value;
+			//var certificate = formObj.certificate.value;
+			var exit_project_year = formObj.exit_project_year.value;
+			var exit_project_month = formObj.exit_project_month.value;
+			var exit_project_day = formObj.exit_project_day.value;
+			//var exit_project = formObj.exit_project.value;
+			//var skill = formObj.skill.value;
+			//var experence = formObj.experence.value;
+			//var note = formObj.note.value;
+			var turnover = formObj.turnover.value;
+
+
+			//---------------------------------------------------
+			// 유저가 입력한 회원명의 유효성 체크하기
+			//---------------------------------------------------
+			// isvalidpettern 함수를 호출하여 이름 문자열이 합당한 이름이면...
+			// 즉 isValidPettern (/^[가-힣]{2,10}$/,name) 호출하여 리턴값이 false면
+			//---------------------------------------------------
+			if ( isValidPattern(/^[가-힣]{2,10}$/,name)== false){
+			alert("이름은 한글 2~10자 사이입니다.");
+			//-------------------------------------
+			// <form name = memberRegForm ~> 태그 안의
+			// <input type=text  name=mem_name ~ > 태그가 실행되어 출력되는 입력양식에 값을 비우기
+			//--------------------------------------
+			formObj.name.value = "";
+			//-------------------------------------
+			//<form name = memberRegForm ~> 태그 안의
+			//<input type = text  name=mem_name ~ > 태그가 실행되어 출력되는 입력양식에 포커스 넣기
+			//--------------------------------------
+			formObj.name.focus();
+			//-------------------------------------
+			// 함수중단하기
+			//-------------------------------------
+			return;
+		}
+
+			//--------------------------------------------------------------
+			// 성별이 하나라도 체크가 안되 있으면 경고하고 함수중단.
+			// getCheckedCnt  함수 호출하여 성별의 체크 개수를 얻어 0개 이면 경고하고 함수중단.
+			//--------------------------------------------------------------
+			if( getCheckedCnt(formObj.gender)==0 ){
+			alert("남여 중 하나는 선택해야합니다.")
+			return;
+		}
+
+			//---------------------------------------------------
+			// 유저가 입력한 email 유효성 체크하기
+			//---------------------------------------------------
+			// isValidEmail 함수를 호출하여 이메일 문자열이 합당한 이메일이면
+			// isValidEmail (email) 호출하여 리턴값이 true 면
+			if( isValidEmail(email)==false ){
+			alert("이메일 형식이 아닙니다. ");
+			//-------------------------------------
+			// <form name = boradRegForm ~> 태그 안의
+			// <input type=text  name=email ~ > 태그가 실행되어 출력되는 입력양식에 값을 비우기
+			// // 함수중단하기
+			//--------------------------------------
+			formObj.email.value = "";
+			return;
+		}
+
+			//--------------------------------------------------------------
+			// 최종학력이 하나라도 체크가 안되 있으면 경고하고 함수중단.
+			// getCheckedCnt  함수 호출하여 최종학력의 체크 개수를 얻어 0개 이면 경고하고 함수중단.
+			//--------------------------------------------------------------
+			if( getCheckedCnt(formObj.fianl_grade)==0 ){
+			alert("학력 중 하나는 선택해야합니다.")
+			return;
+		}
+
+
+			//---------------------------------------------------
+			// 유저가 입력한 시 명의 유효성 체크하기
+			//---------------------------------------------------
+			// isvalidpettern 함수를 호출하여 시 문자열이 합당한 이름이면...
+			// 즉 isValidPettern (/^[가-힣]{2,30}$/,name) 호출하여 리턴값이 false면
+			//---------------------------------------------------
+			if ( isValidPattern(/^[가-힣]{2,30}$/,city)== false){
+			alert("시 명칭은 한글 2~30자 사이입니다.");
+			//-------------------------------------
+			// <form name = memberRegForm ~> 태그 안의
+			// <input type=text  name=mem_name ~ > 태그가 실행되어 출력되는 입력양식에 값을 비우기
+			//--------------------------------------
+			formObj.city.value = "";
+			//-------------------------------------
+			//<form name = memberRegForm ~> 태그 안의
+			//<input type = text  name=mem_name ~ > 태그가 실행되어 출력되는 입력양식에 포커스 넣기
+			//--------------------------------------
+			formObj.city.focus();
+			//-------------------------------------
+			// 함수중단하기
+			//-------------------------------------
+			return;
+		}
+
+			//---------------------------------------------------
+			// 유저가 입력한 구 명의 유효성 체크하기
+			//---------------------------------------------------
+			// isvalidpettern 함수를 호출하여 시ㄱ구문자열이 합당한 이름이면...
+			// 즉 isValidPettern (/^[가-힣]{2,30}$/,name) 호출하여 리턴값이 false면
+			//---------------------------------------------------
+			if ( isValidPattern(/^[가-힣]{2,30}$/,district)== false){
+			alert("구 명칭은 한글 2~30자 사이입니다.");
+			//-------------------------------------
+			// <form name = memberRegForm ~> 태그 안의
+			// <input type=text  name=mem_name ~ > 태그가 실행되어 출력되는 입력양식에 값을 비우기
+			//--------------------------------------
+			formObj.district.value = "";
+			//-------------------------------------
+			//<form name = memberRegForm ~> 태그 안의
+			//<input type = text  name=mem_name ~ > 태그가 실행되어 출력되는 입력양식에 포커스 넣기
+			//--------------------------------------
+			formObj.district.focus();
+			//-------------------------------------
+			// 함수중단하기
+			//-------------------------------------
+			return;
+		}
+
+
+			//--------------------------------------------------------------
+			// 출생년도가 선택되지 않으면 경고하고 함수중단.
+			//--------------------------------------------------------------
+			if ( isEmpty(birth_year) ){   // if( formObj.birth_year.value == "" ){
+				alert("출생년도는 필수 선택해야합니다.")
+				return;
+			}
+
+
+			//---------------------------------------------------
+			// 유저가 입력한 핸드폰 번호의 유효성 체크하기
+			//---------------------------------------------------
+			// isvalidpettern 함수를 호출하여 핸드폰 번호 문자열이 합당한 이름이면...
+			// 즉 isValidPettern (/^[가-힣]{2,30}$/,phone_num) 호출하여 리턴값이 false면
+			//---------------------------------------------------
+			if ( isValidPattern(/^(010|011|016|017|018|019)-[0-9]{3,4}-[0-9]{4}$/,phone_num)== false){
+			alert("양식에 맞지 않습니다.");
+			//-------------------------------------
+			// <form name = memberRegForm ~> 태그 안의
+			// <input type=text  name=phone_num ~ > 태그가 실행되어 출력되는 입력양식에 값을 비우기
+			//--------------------------------------
+			formObj.phone_num.value = "";
+			//-------------------------------------
+			//<form name = memberRegForm ~> 태그 안의
+			//<input type = text  name=phone_num ~ > 태그가 실행되어 출력되는 입력양식에 포커스 넣기
+			//--------------------------------------
+			formObj.phone_num.focus();
+			//-------------------------------------
+			// 함수중단하기
+			//-------------------------------------
+			return;
+		}
+
+
+
+	}
+
+//form name에 들어갈 데이터와 var formObj = document.???;와 명칭을 통일시켜야 하고, function ???(){과  onclick="???();"에서의 ???부분을 통일시켜야 한다.
+	
+	</script>
+
+</head>
+
+<body><center>
+
+	<form name="freeLancerRegForm" enctype="multipart/form-data" action="boardUpProc.html">
+
+	<table border=1 style="border-collapse:collapse" cellpadding=5 width="700">
+	<tr bgcolor="lightgray" style="cursor:pointer">
+		<td colspan="6" align="center">프리랜서 이력</td>
+		<!-- <td>&nbsp;</td> -->
+		<!-- <td>&nbsp;</td> -->
+		<!-- <td>&nbsp;</td> -->
+		<!-- <td>&nbsp;</td> -->
+		<!-- <td>&nbsp;</td> -->
+	</tr>
+	<tr>
+		<th bgcolor="lightgray" align=center>이력서 등록일</th>
+		<td colspan="5">
+			<select name="resume_reg_year">
+				<option value=""></option>			
+				<option value="2010">2010</option>
+				<option value="2011">2011</option>
+				<option value="2012">2012</option>
+				<option value="2013">2013</option>
+				<option value="2014">2014</option>
+			</select>년
+			<select name="resume_reg_month">
+				<option value=""></option>			
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+				<option value="9">9</option>
+				<option value="10">10</option>
+				<option value="11">11</option>
+				<option value="12">12</option>
+			</select>월
+			<select name="resume_reg_day">
+				<option value=""></option>			
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+				<option value="9">9</option>
+				<option value="10">10</option>
+				<option value="11">11</option>
+				<option value="12">12</option>
+				<option value="13">13</option>			
+				<option value="14">14</option>
+				<option value="15">15</option>
+				<option value="16">16</option>
+				<option value="17">17</option>
+				<option value="18">18</option>
+				<option value="19">19</option>
+				<option value="20">20</option>
+				<option value="21">21</option>
+				<option value="22">22</option>
+				<option value="23">23</option>
+				<option value="24">24</option>
+				<option value="25">25</option>
+				<option value="26">26</option>
+				<option value="27">27</option>
+				<option value="28">28</option>
+				<option value="29">29</option>
+				<option value="30">30</option>
+				<option value="31">31</option>
+			</select>일
+		</td>
+		<!-- <td>&nbsp;</td> -->
+		<!-- <td>&nbsp;</td> -->		
+		<!-- <td>&nbsp;</td> -->
+		<!-- <td>&nbsp;</td> -->
+	</tr>
+	<tr>
+		<th bgcolor="lightgray" align=center>이름</th>
+		<td>
+			<input type="text" name="name">
+		</td>
+		<th bgcolor="lightgray" align=center>성별</th>
+		<td>
+			<input type="radio" name="gender" value="남">남
+			<input type="radio" name="gender" value="여">여
+		</td>
+		<th bgcolor="lightgray" align=center>출생년도</th>
+		<td>
+		<select name="birth_year">
+				<option value=""></option>			
+				<option value="1980">1980</option>
+				<option value="1981">1981</option>
+				<option value="1982">1982</option>
+				<option value="1983">1983</option>
+				<option value="1984">1984</option>
+				<option value="1985">1985</option>
+				<option value="1986">1986</option>
+				<option value="1987">1987</option>
+				<option value="1988">1988</option>
+				<option value="1989">1989</option>
+				<option value="1990">1990</option>
+			</select>년생
+		</td>
+	</tr>
+	<tr>
+		<th bgcolor="lightgray" align=center>핸드폰</th>
+		<td>
+			<input type="text" name="phone_num">
+		</td>
+			<th bgcolor="lightgray" align=center>이메일</th>
+		<td colspan="3">
+			<input type="text" name="email">
+		</td>
+		<!-- <td>&nbsp;</td> -->
+		<!-- <td>&nbsp;</td> -->
+	</tr>
+	<tr>
+		<th bgcolor="lightgray" align=center>거주지</th>
+		<td colspan="5">
+			<input type="text" name="city">시
+			<input type="text" name="district">구
+		</td>
+		<!-- <td>&nbsp;</td> -->
+		<!-- <td>&nbsp;</td> -->
+		<!-- <td>&nbsp;</td> -->
+		<!-- <td>&nbsp;</td> -->
+	</tr>
+	<tr>
+		<th bgcolor="lightgray" align=center>최종 학력</th>
+		<td colspan="5">
+			<input type="radio" name="fianl_grade" value="고졸">고졸
+			<input type="radio" name="fianl_grade" value="전문대졸">전문대졸
+			<input type="radio" name="fianl_grade" value="일반대졸">일반대졸
+			<input type="radio" name="fianl_grade" value="석사졸">석사졸
+		</td>
+		<!-- <td>&nbsp;</td> -->
+		<!-- <td>&nbsp;</td> -->
+		<!-- <td>&nbsp;</td> -->
+		<!-- <td>&nbsp;</td> -->
+	</tr>
+	<tr>
+		<th bgcolor="lightgray" align=center>개발 경력</th>
+		<td colspan="5">
+		<select name="develope_reg_year">			
+				<option value=""></option>			
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+				<option value="9">9</option>
+				<option value="10">10</option>
+				<option value="11">11</option>
+				<option value="12">12</option>
+				<option value="13">13</option>			
+				<option value="14">14</option>
+				<option value="15">15</option>
+			</select>년
+			<select name="develope_reg_month">			
+				<option value=""></option>			
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+				<option value="9">9</option>
+				<option value="10">10</option>
+				<option value="11">11</option>
+				<option value="12">12</option>
+			</select>개월&nbsp;&nbsp;&nbsp;&nbsp;(이력서 등록일 기준)
+		</td>
+		<!-- <td>&nbsp;</td> -->
+		<!-- <td>&nbsp;</td> -->
+		<!-- <td>&nbsp;</td> -->
+		<!-- <td>&nbsp;</td> -->
+	</tr>
+	<tr>
+		<th bgcolor="lightgray" align=center>희망 연봉</th>
+		<td colspan="5">
+		<select name="hope_salary">			
+				<option value=""></option>			
+				<option value="5000">5000</option>
+				<option value="5500">5500</option>
+				<option value="6000">6000</option>
+				<option value="6500">6500</option>
+				<option value="7000">7000</option>
+				<option value="7500">7500</option>
+				<option value="8000">8000</option>
+				<option value="8500">8500</option>
+				<option value="9000">9000</option>
+				<option value="9500">9500</option>
+				<option value="10000">10000</option>
+				<option value="10500">10500</option>
+			</select>만원&nbsp;&nbsp;&nbsp;~
+		<select name="hope_salary">			
+				<option value=""></option>			
+				<option value="5000">5000</option>
+				<option value="5500">5500</option>
+				<option value="6000">6000</option>
+				<option value="6500">6500</option>
+				<option value="7000">7000</option>
+				<option value="7500">7500</option>
+				<option value="8000">8000</option>
+				<option value="8500">8500</option>
+				<option value="9000">9000</option>
+				<option value="9500">9500</option>
+				<option value="10000">10000</option>
+				<option value="10500">10500</option>
+			</select>만원
+			<input type="checkbox" name="hope_salary" value="결정">면접 후 결정
+		</td>
+		<!-- <td>&nbsp;</td> -->
+		<!-- <td>&nbsp;</td> -->
+		<!-- <td>&nbsp;</td> -->
+		<!-- <td>&nbsp;</td> -->
+	</tr>
+	<tr>
+		<th bgcolor="lightgray" align=center>자격증</th>
+		<td colspan="5">
+		<input type="checkbox" name="certificate" value="결정">정보처리기사
+		<input type="checkbox" name="certificate" value="결정">OCP
+		<input type="checkbox" name="certificate" value="결정">SCJP
+		</td>
+		<!-- <td>&nbsp;</td> -->
+		<!-- <td>&nbsp;</td> -->
+		<!-- <td>&nbsp;</td> -->
+		<!-- <td>&nbsp;</td> -->
+	</tr>
+	<tr>
+		<th bgcolor="lightgray" align=center>프로젝트 종료일</th>
+		<td colspan="5">
+		<select name="exit_project_year">
+				<option value=""></option>			
+				<option value="2020">2020</option>
+				<option value="2021">2021</option>
+				<option value="2022">2022</option>
+				<option value="2023">2023</option>
+				<option value="2024">2024</option>
+			</select>년
+			<select name="exit_project_month">
+				<option value=""></option>			
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+				<option value="9">9</option>
+				<option value="10">10</option>
+				<option value="11">11</option>
+				<option value="12">12</option>
+			</select>월
+			<select name="exit_project_day">
+				<option value=""></option>			
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+				<option value="9">9</option>
+				<option value="10">10</option>
+				<option value="11">11</option>
+				<option value="12">12</option>
+				<option value="13">13</option>			
+				<option value="14">14</option>
+				<option value="15">15</option>
+				<option value="16">16</option>
+				<option value="17">17</option>
+				<option value="18">18</option>
+				<option value="19">19</option>
+				<option value="20">20</option>
+				<option value="21">21</option>
+				<option value="22">22</option>
+				<option value="23">23</option>
+				<option value="24">24</option>
+				<option value="25">25</option>
+				<option value="26">26</option>
+				<option value="27">27</option>
+				<option value="28">28</option>
+				<option value="29">29</option>
+				<option value="30">30</option>
+				<option value="31">31</option>
+			</select>일
+			<input type="checkbox" name="exit_project" value="결정">종료일 확정
+		</td>
+		<!-- <td>&nbsp;</td> -->
+		<!-- <td>&nbsp;</td> -->
+		<!-- <td>&nbsp;</td> -->
+		<!-- <td>&nbsp;</td> -->
+	</tr>
+	<tr>
+		<th bgcolor="lightgray" align=center width="120">소유 스킬 및 경험 분야</th>
+		<td colspan="5">
+		[소유 스킬] : 
+		<input type="checkbox" name="skill" value="결정">JAVA
+		<input type="checkbox" name="skill" value="결정">JSP
+		<input type="checkbox" name="skill" value="결정">ASP
+		<br>
+		[경험 분야] :
+		<input type="checkbox" name="experence" value="결정">은행
+		<input type="checkbox" name="experence" value="결정">증권
+		<input type="checkbox" name="experence" value="결정">보험
+		</td>
+		<!-- <td>&nbsp;</td> -->
+		<!-- <td>&nbsp;</td> -->
+		<!-- <td>&nbsp;</td> -->
+		<!-- <td>&nbsp;</td> -->
+	</tr>
+	<tr>
+		<th bgcolor="lightgray" align=center>참고사항</th>
+		<td colspan="5">
+		<input type="text" name="note" size="70">
+		</td>
+		<!-- <td>&nbsp;</td> -->
+		<!-- <td>&nbsp;</td> -->
+		<!-- <td>&nbsp;</td> -->
+		<!-- <td>&nbsp;</td> -->
+	</tr>
+	<tr>
+		<th bgcolor="lightgray" align=center>이직여부</th>
+		<td colspan="5">
+		<input type="checkbox" name="turnover" value="결정">개발자 안함
+		</td>
+		<!-- <td>&nbsp;</td> -->
+		<!-- <td>&nbsp;</td> -->
+		<!-- <td>&nbsp;</td> -->
+		<!-- <td>&nbsp;</td> -->
+	</tr>
+	</table><br>
+
+	<input type="button"  value="저장" onclick="freeLancerForm();">	
+	<input type="reset"  value="초기화">
+
+</body>
+
+</html>
