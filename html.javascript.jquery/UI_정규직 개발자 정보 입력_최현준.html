@@ -359,7 +359,7 @@
 			</select>년
 	</td>
 	<td align=center>
-	<input type="checkbox" name="cohabitation" value="동거">운동
+	<input type="checkbox" name="cohabitation" value="동거">동거
 	</td>
 </tr>
 </table>
@@ -558,13 +558,188 @@
 	<th bgcolor="lightgray" align=center>수료과목</th>
 </tr>
 <tr>
-	<td></td>
-	<td></td>
+	<td align=center>
+	<input type="text" name="edu_center">
+	</td>
+	<td align=center>
+	<select name="edu_term">
+				<option value=""></option>			
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+				<option value="9">9</option>
+				<option value="10">10</option>
+				<option value="11">11</option>
+				<option value="12">12</option>
+			</select>&nbsp;개월
+	</td>
+	<td>
+	<select name="edu_comp_year">
+				<option value=""></option>			
+				<option value="2010">2010</option>
+				<option value="2011">2011</option>
+				<option value="2012">2012</option>
+				<option value="2013">2013</option>
+				<option value="2014">2014</option>
+			</select>&nbsp;년
+			<select name="edu_comp_month">
+				<option value=""></option>			
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+				<option value="9">9</option>
+				<option value="10">10</option>
+				<option value="11">11</option>
+				<option value="12">12</option>
+			</select>&nbsp;월
+			<select name="edu_comp_day">
+				<option value=""></option>			
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+				<option value="9">9</option>
+				<option value="10">10</option>
+				<option value="11">11</option>
+				<option value="12">12</option>
+				<option value="13">13</option>			
+				<option value="14">14</option>
+				<option value="15">15</option>
+				<option value="16">16</option>
+				<option value="17">17</option>
+				<option value="18">18</option>
+				<option value="19">19</option>
+				<option value="20">20</option>
+				<option value="21">21</option>
+				<option value="22">22</option>
+				<option value="23">23</option>
+				<option value="24">24</option>
+				<option value="25">25</option>
+				<option value="26">26</option>
+				<option value="27">27</option>
+				<option value="28">28</option>
+				<option value="29">29</option>
+				<option value="30">30</option>
+				<option value="31">31</option>
+			</select>&nbsp;일
+		</td>
+	<td>
+	<input type="checkbox" name="comp_sub" value="HTML">HTML
+	<input type="checkbox" name="comp_sub" value="Javascript">Javascript
+	<input type="checkbox" name="comp_sub" value="JQuery">JQuery
+	<br>
+	<input type="checkbox" name="comp_sub" value="Java">Java
+	<input type="checkbox" name="comp_sub" value="Jsp">Jsp
+	<input type="checkbox" name="comp_sub" value="Spring">Spring
+	<br>
+	<input type="checkbox" name="comp_sub" value="Oracle">Oracle
+	<input type="checkbox" name="comp_sub" value="MSSQL">MSSQL
+	<input type="checkbox" name="comp_sub" value="MYSQL">MYSQL
+	</td>
+</tr>
+</table>
+<br>
+
+8. 기호
+<table border=1 style="border-collapse:collapse" cellpadding=5 width="750">
+<tr>
+	<th bgcolor="lightgray" align=center>하루흡연량</th>
+	<th bgcolor="lightgray" align=center>소주주량</th>
+	<th bgcolor="lightgray" align=center>맥주주량(500CC기준)</th>
+	<th bgcolor="lightgray" align=center>관심분야</th>
+</tr>
+<tr>
+	<td align=center>
+		<select name="smoked_per_day">
+				<option value=""></option>			
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+			</select>년
+	</td>
+	<td align=center>
+		<select name="amount_of_soju">
+				<option value=""></option>			
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+			</select>병
+	</td>
+	<td align=center>
+		<select name="amount_of_beer">
+				<option value=""></option>			
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+			</select>잔
+	</td>
+	<td align=center>
+	<input type="checkbox" name="Interests" value="정치">정치
+	<input type="checkbox" name="Interests" value="경제">경제
+	<input type="checkbox" name="Interests" value="사회">사회
+	<input type="checkbox" name="Interests" value="문화">문화
+	</td>
+</tr>
+</table>
+
+<br>
+9. 취미
+<table border=0 style="border-collapse:collapse" cellpadding=5 width="600">
+<tr>
+	<td><input type="text" name="hobby"></td>
+	<td><input type="text" name="hobby"></td>
+	<td><input type="text" name="hobby"></td>
+</tr>
+</table>
+<br>
+
+10. 개발 경력
+<table border=1 style="border-collapse:collapse" cellpadding=5 width="750">
+<tr>
+	<th rowspan=2 bgcolor="lightgray" align=center>프로젝트명/기간</th>
+	<th rowspan=2 bgcolor="lightgray" align=center>고객사/ 근무사/ 역할</th>
+	<th bgcolor="lightgray" align=center>개&nbsp;발&nbsp;환&nbsp;경</th>
+</tr>
+<tr>
+	<!-- <td>&nbsp;</td> -->
+	<!-- <td>&nbsp;</td> -->
+	일기종/OS/언어/DBMS/TOOL/기타</th>
+</tr>
+<tr>
+	<td>
+	<table border=0 style="border-collapse:collapse" cellpadding=5 width="250">
+	<tr>
+		<td>프로젝트명</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>시작일</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>종료일</td>
+		<td></td>
+	</tr>
+	</table>
+	</td>
 	<td></td>
 	<td></td>
 </tr>
 </table>
-
 
 
 
