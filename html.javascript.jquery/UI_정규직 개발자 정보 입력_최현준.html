@@ -150,7 +150,7 @@
 <tr>
 	<td><input type="text" name="junior_col">전문대 졸</td>
 	<td>
-	<select name="col_dep">
+	<select name="dep">
 				<option value=""></option>
 				<option value="행정학부">행정학부</option>
 				<option value="법학과부">법학과부</option>
@@ -191,7 +191,7 @@
 	</td>
 </tr>
 <tr>
-	<td><input type="text" name="Univ">대학교 학사 졸</td>
+	<td><input type="text" name="Univ_Bachelor">대학교 학사 졸</td>
 	<td>
 	<select name="dep">
 				<option value=""></option>
@@ -234,7 +234,7 @@
 	</td>
 </tr>
 <tr>
-	<td><input type="text" name="Univ">대학교 석사 졸</td>
+	<td><input type="text" name="Univ_Master">대학교 석사 졸</td>
 	<td>
 	<select name="dep">
 				<option value=""></option>
@@ -277,7 +277,7 @@
 	</td>
 </tr>
 <tr>
-	<td><input type="text" name="Univ">대학교 박사 졸</td>
+	<td><input type="text" name="Univ_Doctor">대학교 박사 졸</td>
 	<td>
 	<select name="dep">
 				<option value=""></option>
@@ -324,7 +324,7 @@
 
 <br>
 3.가족
-<table border=1 style="border-collapse:collapse" cellpadding=5 width="1000">
+<table border=1 style="border-collapse:collapse" cellpadding=5 width="600">
 <tr>
 	<th bgcolor="lightgray" align=center>관계</th>
 	<th bgcolor="lightgray" align=center>이름</th>
@@ -364,7 +364,7 @@
 </tr>
 </table>
 
-<table border=0 style="border-collapse:collapse" cellpadding=5 width="1000">
+<table border=0 style="border-collapse:collapse" cellpadding=5 width="600">
 <tr>
 	<td align=center>[행삭제]&nbsp;[행추가]</td>
 </tr>
@@ -383,7 +383,7 @@
 	<th bgcolor="lightgray" align=center>입사일/퇴사일</th>
 </tr>
 <tr>
-	<td>
+	<td align=right>
 	회사명:<input type="text" name="company_name">
 	<br>업무:<input type="text" name="task">
 	</td>
@@ -395,7 +395,7 @@
 				<option value="회계">회계</option>
 		</select>
 	</td>
-	<td>
+	<td align=center>
 	<select name="com_dep">
 				<option value=""></option>
 				<option value="마케팅">마케팅</option>
@@ -403,33 +403,171 @@
 				<option value="회계">회계</option>
 		</select>
 	</td>
-	<td>
+	<td align=center>
 	<select name="jikup">
 				<option value=""></option>
-				<option value="마케팅">마케팅</option>
-				<option value="프로그래밍">프로그래밍</option>
-				<option value="회계">회계</option>
+				<option value="부장">부장</option>
+				<option value="과장">과장</option>
+				<option value="차장">차장</option>
+				<option value="대리">대리</option>
 		</select>
 	</td>
-	<td>
-	<select name="Field">
+	<td align=center>
+	<select name="emp_type">
 				<option value=""></option>
-				<option value="마케팅">마케팅</option>
-				<option value="프로그래밍">프로그래밍</option>
-				<option value="회계">회계</option>
+				<option value="정규직">정규직</option>
+				<option value="비정규직">비정규직</option>
+				<option value="프리랜서">프리랜서</option>
 		</select>
 	</td>
-	<td>
-	<select name="Field">
+	<td align=center>
+	<select name="Salary">
 				<option value=""></option>
-				<option value="마케팅">마케팅</option>
-				<option value="프로그래밍">프로그래밍</option>
-				<option value="회계">회계</option>
-		</select>
+				<option value="7000">7000</option>
+				<option value="7500">7500</option>
+				<option value="8000">8000</option>
+				<option value="8500">8500</option>
+				<option value="9000">9000</option>
+				<option value="9500">9500</option>
+				<option value="10000">10000</option>
+		</select>만원
 	</td>
+	<td align=center>
+	입사일:
+	<select name="first_day_of_work">
+				<option value=""></option>			
+				<option value="2000">2000</option>
+				<option value="2001">2001</option>
+				<option value="2002">2002</option>
+				<option value="2003">2003</option>
+				<option value="2004">2004</option>
+				<option value="2005">2005</option>
+				<option value="2006">2006</option>
+				<option value="2007">2007</option>
+				<option value="2008">2008</option>
+				<option value="2009">2009</option>
+				<option value="2010">2010</option>
+			</select>&nbsp;년
+			<select name="first_day_of_work">
+				<option value=""></option>			
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+				<option value="9">9</option>
+				<option value="10">10</option>
+				<option value="11">11</option>
+				<option value="12">12</option>
+			</select>&nbsp;월
+			<br>
+		퇴사일:
+		<select name="last_day_of_work">
+				<option value=""></option>			
+				<option value="2000">2000</option>
+				<option value="2001">2001</option>
+				<option value="2002">2002</option>
+				<option value="2003">2003</option>
+				<option value="2004">2004</option>
+				<option value="2005">2005</option>
+				<option value="2006">2006</option>
+				<option value="2007">2007</option>
+				<option value="2008">2008</option>
+				<option value="2009">2009</option>
+				<option value="2010">2010</option>
+			</select>&nbsp;년
+			<select name="last_day_of_work">
+				<option value=""></option>			
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+				<option value="9">9</option>
+				<option value="10">10</option>
+				<option value="11">11</option>
+				<option value="12">12</option>
+			</select>&nbsp;월
+	</td>
+</tr>
+</table>
+
+<table border=0 style="border-collapse:collapse" cellpadding=5 width="1000">
+<tr>
+	<td align=center>[행삭제]&nbsp;[행추가]</td>
+</tr>
+</table>
+
+<br>
+
+5. 자격증
+<table border=0 style="border-collapse:collapse" cellpadding=5 width="800">
+<tr>
+	<td>
+	<input type="checkbox" name="license" value="정보처리기사">정보처리기사
+	&nbsp;<input type="checkbox" name="license" value="정보처리산업기사">정보처리산업기사
+	&nbsp;<input type="checkbox" name="license" value="OCP">OCP
+	&nbsp;<input type="checkbox" name="license" value="SCJP">SCJP
+	&nbsp;<input type="checkbox" name="license" value="OCJP">OCJP
+	&nbsp;<input type="checkbox" name="license" value="CCNA">CCNA
+	&nbsp;<input type="checkbox" name="license" value="MCSE">MCSE
+	&nbsp;<input type="checkbox" name="license" value="MCDBA">MCDBA
+	</td>
+</tr>
+</table>
+<br>
+
+6. 외국어 (중급이상만 입력)
+
+<table border=1 style="border-collapse:collapse" cellpadding=5 width="600">
+<tr>
+	<th bgcolor="lightgray" align=center>독해 가능 외국어</th>
+	<td>
+	<input type="checkbox" name="reading_Foreign_lang" value="영어">영어
+	&nbsp;<input type="checkbox" name="reading_Foreign_lang" value="일어">일어
+	&nbsp;<input type="checkbox" name="reading_Foreign_lang" value="중국어">중국어
+	&nbsp;<input type="checkbox" name="reading_Foreign_lang" value="불어">불어
+	&nbsp;<input type="checkbox" name="reading_Foreign_lang" value="독일어">독일어
+	</td>
+</tr>
+<tr>
+	<th bgcolor="lightgray" align=center>회화 가능 외국어</th>
+	<td>
+	<input type="checkbox" name="conversation_Foreign_lang" value="영어">영어
+	&nbsp;<input type="checkbox" name="conversation_Foreign_lang" value="일어">일어
+	&nbsp;<input type="checkbox" name="conversation_Foreign_lang" value="중국어">중국어
+	&nbsp;<input type="checkbox" name="conversation_Foreign_lang" value="불어">불어
+	&nbsp;<input type="checkbox" name="conversation_Foreign_lang" value="독일어">독일어
+	</td>
+</tr>
+</table>
+<br>
+
+7. IT 교육센터
+<table border=1 style="border-collapse:collapse" cellpadding=5 width="850">
+<tr>
+	<th bgcolor="lightgray" align=center>교육센터명</th>
+	<th bgcolor="lightgray" align=center>교육기간</th>
+	<th bgcolor="lightgray" align=center>교육수료일</th>
+	<th bgcolor="lightgray" align=center>수료과목</th>
+</tr>
+<tr>
+	<td></td>
+	<td></td>
+	<td></td>
 	<td></td>
 </tr>
 </table>
+
+
+
+
 </body>
 
 </html>
