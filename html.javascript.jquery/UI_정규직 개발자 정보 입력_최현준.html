@@ -669,7 +669,7 @@
 				<option value="1">1</option>
 				<option value="2">2</option>
 				<option value="3">3</option>
-			</select>년
+			</select>갑
 	</td>
 	<td align=center>
 		<select name="amount_of_soju">
@@ -708,7 +708,7 @@
 <br>
 
 10. 개발 경력
-<table border=1 style="border-collapse:collapse" cellpadding=5 width="750">
+<table border=1 style="border-collapse:collapse" cellpadding=5 width="950">
 <tr>
 	<th rowspan=2 bgcolor="lightgray" align=center>프로젝트명/기간</th>
 	<th rowspan=2 bgcolor="lightgray" align=center>고객사/ 근무사/ 역할</th>
@@ -717,27 +717,279 @@
 <tr>
 	<!-- <td>&nbsp;</td> -->
 	<!-- <td>&nbsp;</td> -->
-	일기종/OS/언어/DBMS/TOOL/기타</th>
+	<th bgcolor="lightgray" align=center>일기종/OS/언어/DBMS/TOOL/기타</th>
 </tr>
 <tr>
 	<td>
-	<table border=0 style="border-collapse:collapse" cellpadding=5 width="250">
+	<table border=1 style="border-collapse:collapse" cellpadding=5 width="250">
 	<tr>
-		<td>프로젝트명</td>
-		<td></td>
+		<td bgcolor="lightgray" align=center>프로젝트명</td>
+		<td><input type="text" name="pro_name"></td>
 	</tr>
 	<tr>
-		<td>시작일</td>
-		<td></td>
+		<td bgcolor="lightgray" align=center>시작일</td>
+		<td>
+			<select name="pro_start_day">
+				<option value=""></option>			
+				<option value="2010">2010</option>
+				<option value="2011">2011</option>
+				<option value="2012">2012</option>
+				<option value="2013">2013</option>
+				<option value="2014">2014</option>
+			</select>&nbsp;년
+			<select name="pro_exit_day">
+				<option value=""></option>			
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+				<option value="9">9</option>
+				<option value="10">10</option>
+				<option value="11">11</option>
+				<option value="12">12</option>
+			</select>&nbsp;월
+		</td>
 	</tr>
 	<tr>
-		<td>종료일</td>
-		<td></td>
+		<td bgcolor="lightgray" align=center>종료일</td>
+		<td>
+			<select name="pro_start_day">
+				<option value=""></option>			
+				<option value="2010">2010</option>
+				<option value="2011">2011</option>
+				<option value="2012">2012</option>
+				<option value="2013">2013</option>
+				<option value="2014">2014</option>
+			</select>&nbsp;년
+			<select name="pro_exit_day">
+				<option value=""></option>			
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+				<option value="9">9</option>
+				<option value="10">10</option>
+				<option value="11">11</option>
+				<option value="12">12</option>
+			</select>&nbsp;월
+		</td>
 	</tr>
 	</table>
 	</td>
-	<td></td>
-	<td></td>
+	<td>
+		<table style="border-collapse:collapse" cellpadding=5 width="250">
+			<tr>
+				<td bgcolor="lightgray" align=center>고객사</td>
+				<td><input type="text" name="customer"></td>
+			</tr>
+			<tr>
+				<td bgcolor="lightgray" align=center>근무사</td>
+				<td><input type="text" name="working_comp"></td>
+			</tr>
+			<tr>
+				<td bgcolor="lightgray" align=center>역할</td>
+				<td>&nbsp</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<input type="checkbox" name="role" value="개발">개발
+					<input type="checkbox" name="role" value="운영">운영
+					<input type="checkbox" name="role" value="유지보수">유지보수
+					<br>
+					<input type="checkbox" name="role" value="분석설계">분석설계
+					<br>
+					<input type="checkbox" name="role" value="PM">PM
+					<input type="checkbox" name="role" value="웹디">웹디
+				</td>
+				<!-- <td>&nbsp;</td> -->
+			</tr>
+		</table>
+	</td>
+	<td>
+		<table border=1 style="border-collapse:collapse" cellpadding=5 width="400">
+			<tr>
+				<td bgcolor="lightgray" align=center>서버기종(H/W)</td>
+				<td>
+					<select name="Hardware" style="width:50;">
+						<option value=""></option>			
+						<option value="CPU">CPU</option>
+						<option value="RAM">RAM</option>
+						<option value="SSD">SSD</option>
+						<option value="HDD">HDD</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td bgcolor="lightgray" align=center>OS</td>
+				<td>
+					<select name="operating_sys" style="width:50;">
+						<option value=""></option>			
+						<option value="Windows">Windows</option>
+						<option value="Linux">Linux</option>
+						<option value="Unix">Unix</option>
+						<option value="Mac OS">Mac OS</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td bgcolor="lightgray" align=center>언어</td>
+				<td>
+					<select name="operating_lang">
+						<option value=""></option>			
+						<option value="JAVA">JAVA</option>
+						<option value="Javascript">Javascript</option>
+						<option value="C++">C++</option>
+						<option value="C#">C#</option>
+						<option value="Python">Python</option>
+						<option value="VBA">VBA</option>
+					</select>
+					<select name="operating_lang">
+						<option value=""></option>			
+						<option value="JAVA">JAVA</option>
+						<option value="Javascript">Javascript</option>
+						<option value="C++">C++</option>
+						<option value="C#">C#</option>
+						<option value="Python">Python</option>
+						<option value="VBA">VBA</option>
+					</select>
+					<select name="operating_lang">
+						<option value=""></option>			
+						<option value="JAVA">JAVA</option>
+						<option value="Javascript">Javascript</option>
+						<option value="C++">C++</option>
+						<option value="C#">C#</option>
+						<option value="Python">Python</option>
+						<option value="VBA">VBA</option>
+					</select>
+					<select name="operating_lang">
+						<option value=""></option>			
+						<option value="JAVA">JAVA</option>
+						<option value="Javascript">Javascript</option>
+						<option value="C++">C++</option>
+						<option value="C#">C#</option>
+						<option value="Python">Python</option>
+						<option value="VBA">VBA</option>
+					</select>
+					<select name="operating_lang">
+						<option value=""></option>			
+						<option value="JAVA">JAVA</option>
+						<option value="Javascript">Javascript</option>
+						<option value="C++">C++</option>
+						<option value="C#">C#</option>
+						<option value="Python">Python</option>
+						<option value="VBA">VBA</option>
+					</select>
+					<select name="operating_lang">
+						<option value=""></option>			
+						<option value="JAVA">JAVA</option>
+						<option value="Javascript">Javascript</option>
+						<option value="C++">C++</option>
+						<option value="C#">C#</option>
+						<option value="Python">Python</option>
+						<option value="VBA">VBA</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td bgcolor="lightgray" align=center>프레임워크</td>
+				<td>
+					<select name="Frame_work">
+						<option value=""></option>			
+						<option value="스트럿츠 프레임워크">스트럿츠 프레임워크</option>
+						<option value="스프링 프레임워크">스프링 프레임워크</option>
+						<option value="앵귤러 JS">앵귤러 JS</option>
+						<option value="장고 프레임워크">장고 프레임워크</option>
+					</select>
+					<select name="Frame_work">
+						<option value=""></option>			
+						<option value="스트럿츠 프레임워크">스트럿츠 프레임워크</option>
+						<option value="스프링 프레임워크">스프링 프레임워크</option>
+						<option value="앵귤러 JS">앵귤러 JS</option>
+						<option value="장고 프레임워크">장고 프레임워크</option>
+					</select>
+					<select name="Frame_work">
+						<option value=""></option>			
+						<option value="스트럿츠 프레임워크">스트럿츠 프레임워크</option>
+						<option value="스프링 프레임워크">스프링 프레임워크</option>
+						<option value="앵귤러 JS">앵귤러 JS</option>
+						<option value="장고 프레임워크">장고 프레임워크</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td bgcolor="lightgray" align=center>DBMS</td>
+				<td>
+					<select name="DBMS">
+						<option value=""></option>			
+						<option value="MySQL">MySQL</option>
+						<option value="DB2">DB2</option>
+						<option value="Sybase">Sybase</option>
+						<option value="Derby">Derby</option>
+					</select>
+					<select name="DBMS">
+						<option value=""></option>			
+						<option value="MySQL">MySQL</option>
+						<option value="DB2">DB2</option>
+						<option value="Sybase">Sybase</option>
+						<option value="Derby">Derby</option>
+					</select>
+					<select name="DBMS">
+						<option value=""></option>			
+						<option value="MySQL">MySQL</option>
+						<option value="DB2">DB2</option>
+						<option value="Sybase">Sybase</option>
+						<option value="Derby">Derby</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td bgcolor="lightgray" align=center>개발 툴</td>
+				<td>
+					<select name="DBMS">
+						<option value=""></option>			
+						<option value="이클립스">이클립스</option>
+						<option value="Brackets">Brackets</option>
+						<option value="PyCharm">PyCharm</option>
+						<option value="Android Studio">Android Studio</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td bgcolor="lightgray" align=center>기타</td>
+				<td>
+					<select name="DBMS">
+						<option value=""></option>			
+						<option value="유니티">유니티</option>
+						<option value="언리얼 엔진4">언리얼 엔진4</option>
+						<option value="rpg쯔꾸르">rpg쯔꾸르</option>
+						<option value="godot">godot</option>
+					</select>
+					<select name="DBMS">
+						<option value=""></option>			
+						<option value="유니티">유니티</option>
+						<option value="언리얼 엔진4">언리얼 엔진4</option>
+						<option value="rpg쯔꾸르">rpg쯔꾸르</option>
+						<option value="godot">godot</option>
+					</select>
+					<select name="DBMS">
+						<option value=""></option>			
+						<option value="유니티">유니티</option>
+						<option value="언리얼 엔진4">언리얼 엔진4</option>
+						<option value="rpg쯔꾸르">rpg쯔꾸르</option>
+						<option value="godot">godot</option>
+					</select>
+				</td>
+			</tr>
+			</table>
+	</td>
 </tr>
 </table>
 
