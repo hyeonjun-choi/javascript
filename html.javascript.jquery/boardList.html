@@ -2,9 +2,39 @@
 <meta charset="UTF-8">
 <head>
 	<title></title>
+	<!-------------------------------------------------------->
+	<!-- common_func.js .-->
+	<!-------------------------------------------------------->
+	<script src="common_func.js"></script>
+	<script src="common_data.js"></script>
+	
+	<script>
+		//------------------------------------------
+		//요일별 메시지를 보여주는 openMesage 함수 선언하기
+		//------------------------------------------
+		function openMesage(){
+			//------------------------------------------
+			//week 변수 선언. getTodayWeek 함수 호출로 현재 요일 얻어 
+			//week 변수에 저장하기.
+			//------------------------------------------
+			var week = getTodayWeek();
+			//------------------------------------------
+			//msg 변수 선언. 공용 함수 안의 weekMsg 라는 변수에 저장된
+			//JSON 객체 안에서 week 변수안의 문자를 키값으로
+			//가지고 놈의 대응 문자 얻어
+			//변수 msg에 저장하기
+			//------------------------------------------
+			var msg = weekMsg[week];
+			//------------------------------------------
+			//경고창 띄우기
+			//------------------------------------------
+			alert(msg);
+		}
+
+	</script>
 </head>
 
-<body>
+<body onload="openMesage()">
 	<center>
 		
 
@@ -94,6 +124,12 @@
 	<input type="button" value="검색">
 	<input type="button" value="모두검색">
 
+	<br><br><br>
+	
+	<script>
+		document.write(getTodayYMDW());
+	</script>
+	
 	</center>
 </body>
 

@@ -212,3 +212,50 @@ try~catch~finally 구문
 	}
 
 */
+
+//----------------------------------------------------
+//현재 시각의 년-월-일(요일)을 리턴하는 함수 선언
+//----------------------------------------------------
+function getTodayYMDW(){
+	// today 변수 선언. 현재 날짜를 관리하는 Date 객체 생성. Date객체의 메위주
+	// 를 today 변수에 저장
+	var today = new Date();
+	// 현재 시각의 년월일(요일) 문자로 리턴
+	return today.getFullYear() 
+	+ "-" + (today.getMonth()+1) 
+	+ "-" + today.getDate() 
+	+ "(" + getTodayWeek().replace("요일","") + ")";
+}
+
+
+function getTodayWeek(){
+	// today 변수 선언. 현재 날짜를 관리하는 Date 객체 생성. Date객체의 메위주
+	// 를 today 변수에 저장
+	var today = new Date();
+	// weekNo 변수 선언. Date 객체의 getDay 메소드 호출하여 현재 요일 번호 얻어
+	// weekNo 변수에 저장하기
+	var weekNo = today.getDay();
+	// week 변수 선언. "일요일" 저장하기
+	var week = "일요일";
+	// 요일 번호에 따라 week 변수에 오늘 요일 문자 저장하기
+	if( weekNo==1 )		{week = "월요일"}
+	else if( weekNo==2 ){week = "화요일"}
+	else if( weekNo==3 ){week = "수요일"}
+	else if( weekNo==4 ){week = "목요일"}
+	else if( weekNo==5 ){week = "금요일"}
+	else if( weekNo==6 ){week = "토요일"}
+	// 오늘 요일 문자 리턴하기
+	return week;
+}
+
+
+
+// 똑같은 이름의 함수가 두개 이상이면 마지막 함수가 진짜가 됨
+// 위 아래는 똑같은 함수이다
+/*
+function getTodayWeek(){
+	return ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"][new Date().getDate()]
+}
+*/
+
+
