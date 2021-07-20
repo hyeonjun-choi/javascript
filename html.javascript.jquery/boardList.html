@@ -12,12 +12,15 @@
 		//------------------------------------------
 		//요일별 메시지를 보여주는 openMesage 함수 선언하기
 		//------------------------------------------
-		function openMesage(){
+		function openWeekMesage(){
 			//------------------------------------------
 			//week 변수 선언. getTodayWeek 함수 호출로 현재 요일 얻어 
 			//week 변수에 저장하기.
 			//------------------------------------------
 			var week = getTodayWeek();
+			//week = "금요일"; -- 테스트할때 쓰는 방법
+			//week = "토요일";
+			//week = "일요일";
 			//------------------------------------------
 			//msg 변수 선언. 공용 함수 안의 weekMsg 라는 변수에 저장된
 			//JSON 객체 안에서 week 변수안의 문자를 키값으로
@@ -28,13 +31,94 @@
 			//------------------------------------------
 			//경고창 띄우기
 			//------------------------------------------
-			alert(msg);
+			//alert(msg);
 		}
+
+		/*
+		function getSchdualMsg(){
+			// common_da.js 파일 안의 scheduleMsg 변수의 2차원 Array 객체 안을 검색
+			
+			for( var i=0 ; i<scheduleMsg.length ; i++ ){
+				for( var j=0 ; j<scheduleMsg[i].length ; j++){
+					var data = scheduleMsg[i][j];
+					alert(data)
+				}
+			}
+
+
+			var tot_msg = "";
+			for( var i=0 ; i<scheduleMsg.length ; i++ ){
+				var date = scheduleMsg[i][0];
+				var msg = scheduleMsg[i][1];
+				if( isToday(date) ){
+					//alert( msg )
+					tot_msg = tot_msg + msg;
+				}
+				//alert( date + " / " + msg)
+			}
+		}
+
+		function getSchdualMsg(){
+		var tot_msg = "";
+			for( var i=0 ; i<scheduleMsg.length ; i++ ){
+				var date = scheduleMsg[i][0];
+				var msg = scheduleMsg[i][1];
+				if( isToday(date) ){
+					//alert( msg )
+					tot_msg = tot_msg + msg;
+				}
+				//alert( date + " / " + msg)
+			}
+			return tot_msg;
+		}*/
+
+
+		function getscheduleMsg(){
+			// common_da.js 파일 안의 scheduleMsg 변수의 2차원 Array 객체 안을 검색
+			var arr = [];
+			for( var i=0 ; i<scheduleMsg.length ; i++ ){
+				var date = scheduleMsg[i][0];
+				date = deleteBlank(date);
+				var msg = scheduleMsg[i][1];
+				if( isToday(date) ){
+				//if( date==2021-11-03){
+					arr.push(msg);
+				}
+			}
+			return arr.join(" ");
+		}
+
+
+		function get_goldenSaying(){
+			var goldenSaying_cnt = goldenSaying.length;
+			var random_index = Math.floor( Math.random()*goldenSaying_cnt);
+			return goldenSaying[random_index];
+		}
+			
+		function get_DDayMsg(){
+			var arr = [];
+			for( var i=0 ; i<dDayMsg.length ; i++ ){
+			var date = dDayMsg[i][0];
+			date = deleteBlank(date);
+			var msg = dDayMsg[i][1];
+
+			var dDay = get_dDay(date);
+
+			if( dDay>=0 && dDay<=10 ) {
+				arr.push( date + "까지" + msg + " 는 " + dDay + "일 남았습니다.");
+			}
+		}
+		if( arr.length>0 ){
+			return arr.join("<br>") ;
+		}else{
+			return "" ;
+		}
+	}
 
 	</script>
 </head>
 
-<body onload="openMesage()">
+<body onload="openWeekMesage();"><br><br>
 	<center>
 		
 
@@ -127,12 +211,16 @@
 	<br><br><br>
 	
 	<script>
-		document.write(getTodayYMDW());
+		document.write( "<table border=1 style='border-collapse:collapse' cellpadding=5>" );
+		document.write( "<tr><th>오늘 날짜<td>"+getTodayYMDW() );
+		document.write( "<tr><th>일정 메시지<td>"+getscheduleMsg() );
+		document.write( "<tr><th>오늘의 명언<td>"+get_goldenSaying() );
+		document.write( "<tr><th>D-Day<td>"+get_DDayMsg() );
+		document.write( "</table>" );
 	</script>
 	
 	</center>
 </body>
 
 </html>
-
 

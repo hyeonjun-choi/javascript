@@ -220,11 +220,17 @@ function getTodayYMDW(){
 	// today 변수 선언. 현재 날짜를 관리하는 Date 객체 생성. Date객체의 메위주
 	// 를 today 변수에 저장
 	var today = new Date();
+	var Year = today.getFullYear();
+	var month = today.getMonth()+1
+		if( month<10 ) {month = "0"+month;}
+	var date = today.getDate();
+		if( date<10 ) {date = "0"+date;}
+	var week = getTodayWeek().replace("요일","");
 	// 현재 시각의 년월일(요일) 문자로 리턴
-	return today.getFullYear() 
-	+ "-" + (today.getMonth()+1) 
-	+ "-" + today.getDate() 
-	+ "(" + getTodayWeek().replace("요일","") + ")";
+	return Year 
+	+ "-" + month 
+	+ "-" + date
+	+ "(" + week + ")";
 }
 
 
@@ -258,4 +264,136 @@ function getTodayWeek(){
 }
 */
 
+/*
+function isToday( dateStr ){
+	try{
+		var arr = dateStr.split("_");
+		//------------------------------
+		var year = arr[0];
+		var month = arr[1];
+		var date = arr[2];
+		//------------------------------
+		year = parseInt(year, 10);
+		month = parseInt(month, 10);
+		date = parseInt(date, 10);
+		//------------------------------
+		var today = new Date();
+		var today_year = today.getFullYear();
+		var today_month = today.getFullmonth()+1;
+		var today_date = today.getFullDate();
+		//------------------------------
+		return year==today_year && month==today_month && date==today_date;
+		}
+}
+*/	
+// 앞 뒤 공백 조심!
+//---------------------------------------------------------
+// 매개변수로 들어온 날짜문자가 오늘날짜와 동일하면 true 리턴하는 함수. 아니면
+// false 리턴.
+//---------------------------------------------------------
+function isToday( dateStr ){
+	try{
+		//----------------------------------------------------
+		// 변수 arr 선언. dateStr 매개변수 안의 날짜 문자를 - 기준으로 토막내어
+		// Array 객체 안에 담기.
+		//----------------------------------------------------
+		var arr = dateStr.split("-");
+		//-----------------------------------------------------
+		// Array 객체 안의 배열변수 안의 데이터 꺼내어 year, month, date 변수에 저장
+		// String 객체의 trim 메소드 호출로 앞뒤 공백 제거하기
+		//-----------------------------------------------------
+		var year = arr[0];		
+		var month = arr[1];		
+		var date = arr[2];		
+		//-----------------------------------------------------
+		// parseInt라는 내장 함수를 호출하여
+		// year, month, date 변수 안의 숫자문자를 정수 숫자로 바꾸기
+		//-----------------------------------------------------
+		year = parseInt(year, 10);
+		month = parseInt(month, 10);
+		date = parseInt(date, 10);
+		//-----------------------------------------------------
+		// 변수 today 선언. 오늘 날짜를 관리하는 Date 객체 생성하고 메위주를 today에 저장하기
+		// Date 객체의 getFullYear 메소드 호출로 년도 얻어 변수 today_year에 저장하기
+		// Date 객체의 getmonth 메소드 호출로 년도 얻어 변수 today_month에 저장하기
+		// Date 객체의 getdate 메소드 호출로 년도 얻어 변수 today_date에 저장하기
+		//-----------------------------------------------------
+		var today = new Date();
+		var today_year = today.getFullYear();
+		var today_month = today.getMonth()+1;
+		var today_date = today.getDate();
+		//-----------------------------------------------------
+		// 매개 변수로 들어온 년월일 이 오늘 날짜의 년월일과 동일하면 true 리턴하기
+		// 아니면 false 리턴하기
+		//-----------------------------------------------------
+		return year == today_year && month == today_month && date == today_date;
+	}
 
+catch(e){
+	alert("isToday 함수 에서 에러발생!")
+	return false;
+}
+}
+
+
+//-----------------------------------------------------------------
+// 매개변수로 들어온 문자에서 모든 공백을 제거하고 난 후의 문자 리턴하기
+//-----------------------------------------------------------------
+function deleteBlank( str ){
+	try{
+		//----------------------------------------
+		//공백 제거한 문자 저장할 변수 result 선언
+		//----------------------------------------
+		result = "";
+		//----------------------------------------
+		//반복문 돌리면서 매개변수로 들어온 문자열 중 한개씩 접근해서 
+		//공백이 아닌 문자만 result 변수에 누적시키는 반복문
+		//----------------------------------------
+		for(var i=0 ; i<str.length; i++){
+			//만약 i번째 문자가 공백이 아니면 i번째 문자를 result변수에 누적시키기
+			if( str.charAt(i) != " "){
+				result = result + str.charAt(i);
+			}
+		}
+		return result;
+	 
+}
+catch(e){
+	alert("deleteBlank 함수 에서 에러발생!")
+	return false;
+}
+}
+
+//-----------------------------------------------------------------
+// D-Day
+//-----------------------------------------------------------------
+
+function get_dDay(date) {
+
+
+		var futureday = date.split("-");
+		//-----------------------------------------------------
+		// Array 객체 안의 배열변수 안의 데이터 꺼내어 year, month, date 변수에 저장
+		// String 객체의 trim 메소드 호출로 앞뒤 공백 제거하기
+		//-----------------------------------------------------
+		var year = futureday[0];		
+		var month = futureday[1];		
+		var date = futureday[2];		
+		//-----------------------------------------------------
+		// parseInt라는 내장 함수를 호출하여
+		// year, month, date 변수 안의 숫자문자를 정수 숫자로 바꾸기
+		//-----------------------------------------------------
+		year = parseInt(year, 10);
+		month = parseInt(month, 10);
+		date = parseInt(date, 10);
+
+
+		var todayObj = new Date( );
+
+		var x_dayObj = new Date( year,month-1,date );
+	
+		var interval = Math.ceil(  (x_dayObj.getTime() - todayObj.getTime())/(60*60*24*1000)  );
+
+		return interval;
+
+}
