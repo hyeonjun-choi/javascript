@@ -72,10 +72,16 @@
 			return tot_msg;
 		}*/
 
-
+		//------------------------------------------
+		// common_data.js 파일 안의 scheduleMsg 변수안의 2차원 Array 객체에 접근해서
+		// 오늘 날짜가 일치하는 놈의 메시지들을 모아서 리턴하는 함수
+		//------------------------------------------
 		function getscheduleMsg(){
 			// common_da.js 파일 안의 scheduleMsg 변수의 2차원 Array 객체 안을 검색
+			// 메시지를 저장할 Array 객체 생성하기
 			var arr = [];
+			// scheduleMsg 변수안의 2차원 Array 객체에 접근해서
+			// 오늘 날짜와 일치하는 놈의 메시지들을 모아서 Array 객체에 저장하기
 			for( var i=0 ; i<scheduleMsg.length ; i++ ){
 				var date = scheduleMsg[i][0];
 				date = deleteBlank(date);
@@ -85,32 +91,60 @@
 					arr.push(msg);
 				}
 			}
+			// Array객체에 저장된 메시지를 모두 붙여 문자로 리턴하기
 			return arr.join(" ");
 		}
 
-
+		//------------------------------------------
+		// 명언을 리턴하는 함수 선언
+		// 명언 문자열은 common_data.js 파일 안의 goldenSaying 변수안에 저장되어 있다.
+		//------------------------------------------
 		function get_goldenSaying(){
+			// goldenSaying변수안에 저장된 Array 객체 안의 배열변수의 개수 얻기
+			// 이 개수가 명언 개수
 			var goldenSaying_cnt = goldenSaying.length;
+			// 0 ~ 명언개수 - 1 사이의 무작위 인덱스 번호 얻기(실수 리턴)
+			// 이 인덱스번호는 무작위 배열변수를 선택할 때 사용된다.
 			var random_index = Math.floor( Math.random()*goldenSaying_cnt);
+			// 무작위 인덱스 번호에 해당하는 배열변수 안의 데이터를 리턴하기.
 			return goldenSaying[random_index];
 		}
-			
+		
+		//------------------------------------------
+		// 오늘부터 특정 날짜까지의 남은 날이 10일 이하일 때 
+		// 그 특정 날짜에 대응하는 메시지들을 리턴하는 함수 
+		// 특정 날짜와 메시지는 common_data.js 파일 안의 dDayMsg 변수안에 저장되어 있다.
+		//------------------------------------------
 		function get_DDayMsg(){
+			//------------------------------------------
+			// D데이에 대응하는 메시지를 저장할 Array 객체 생성하기
+			//------------------------------------------	
 			var arr = [];
+			//------------------------------------------	
+			// dDayMsg 변수안의 2차원 Array객체에 접근해서
+			// D데이가 10일 이하일 때 메시지들을 모아서 Array객체에 저장하기
+			//------------------------------------------	
 			for( var i=0 ; i<dDayMsg.length ; i++ ){
 			var date = dDayMsg[i][0];
 			date = deleteBlank(date);
 			var msg = dDayMsg[i][1];
-
+			// get_dDay 함수 호출하여 오늘부터 Array객체 안의 i번째 날짜까지의 남은 일수를
+			// 구해서 변수 dDay에 저장하기
 			var dDay = get_dDay(date);
-
+			// 구한 디데이가 0~10일 사이면 Array 객체 저장하기
 			if( dDay>=0 && dDay<=10 ) {
 				arr.push( date + "까지" + msg + " 는 " + dDay + "일 남았습니다.");
 			}
 		}
+			//------------------------------------------	
+			// Array 객체에 저장된 메시지들이 1개 이상이면 모든 메시지를 붙여 리턴하기
+			//------------------------------------------	
 		if( arr.length>0 ){
 			return arr.join("<br>") ;
 		}else{
+			//------------------------------------------	
+			// Array 객체에 저장된 메시지들이 0개이면 "" 리턴하기
+			//------------------------------------------	
 			return "" ;
 		}
 	}

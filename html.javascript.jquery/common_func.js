@@ -37,6 +37,8 @@ function isEmpty(
 		// catch 구문 안에는 try 구문에서 예외발생 시 실행할 코드가 삽입됨
 		// catch 구문의 매개변수 e에는 예외를 관리하는 객체의 메위주가 들어온다
 		// catch(~){~} 구문은 try 구문에서 예외발생 시 호출하는 일종의 함수와 비슷하다
+		// catch 구문 return에 -1을 하는 경우 -- 날짜 관련에서 에러 발생을 넣어야 할 시
+		// 오늘날보다 하루 전 상황에 맞춰야 하므로 -1을 준다(추정)
 		//--------------------------------------------------
 	catch(e){															//예외에 대한 구체적인 언급
 		alert("isEmpty 함수 호출 시 예외 발생!" + e.message );
@@ -356,7 +358,8 @@ function deleteBlank( str ){
 			}
 		}
 		return result;
-	 
+
+		
 }
 catch(e){
 	alert("deleteBlank 함수 에서 에러발생!")
