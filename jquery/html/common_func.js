@@ -400,3 +400,23 @@ function get_dDay(date) {
 		return interval;
 
 }
+
+
+//---------------------------------------------------------
+// 매개변수로 들어온 한글 이름이 한글이면서 2~20자 사이면 true 리턴
+// 아니면 false 리턴하기
+//---------------------------------------------------------
+function isHangeulName( HangeulName ) {
+
+	return isValidPattern(/^[가-힣]{2,20}$/,HangeulName);
+}
+
+function isMem_id( mem_id ) {
+
+	return isValidPattern(/^[a-z][a-z0-9]{4,9}$/,mem_id);
+}
+
+function isMem_pwd( pwd ) {
+
+	return isValidPattern(/^[a-z0-9]{5,8}$/,pwd);
+}
