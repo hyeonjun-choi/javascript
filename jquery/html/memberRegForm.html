@@ -173,7 +173,7 @@
 			}
 
 
-			/*
+			
 			//--------------------------------
 			// 유저가 선택한 성별의 유효성 체크
 			//--------------------------------
@@ -189,17 +189,60 @@
 				alert("남여 중 하나는 선택해야합니다.")
 				return;
 			}
-			*/
-
-			// 위와 아래는 동일한 구문이다.
-			var CheckedGenderCnt = $(".gender:checked").length;
+			
+			/*
+			// 위 코딩은 아래 처럼도 가능하다.
+			var CheckedGenderCnt = $(".gender:checked").filter(":checked").length;
 			if( CheckedGenderCnt==0 ){
 				alert("남여 중 하나는 선택해야합니다.")
 				return;
 			}
-
+			*/
 			
 
+
+			//--------------------------------
+			// 유저가 선택한 취미의 유효성 체크
+			//--------------------------------
+			// 변수 checkedHobbyCnt 선언
+			// class=hobby 를 가진 태그 중에 체크된 놈을 관리하는 JQuery 객체 생성하고
+			// 관리하는 태그의 개수를 얻어 변수 checkedHobbyCnt 저장하기
+			var checkedHobbyCnt = $(".hobby:checked").length;
+			// checkedHobbyCnt 변수 안의 데이터 1개 미만이면
+			// 즉 체크 된 놈이 1개 미만이면
+			if( checkedHobbyCnt<1 ){
+				// 경고창 띄우기
+				// 함수 중단 하기
+				alert("취미는 1개 이상 선택해야합니다.")
+				return;
+
+			}
+
+			//--------------------------------
+			// 유저의 동의 유효성 체크
+			// 동의는 하나이고 필수 체크
+			//--------------------------------
+			// 변수 checkedConfirmCnt 선언
+			// class=confirm 를 가진 태그 중에 체크된 놈을 관리하는 JQuery 객체 생성하고
+			// 관리하는 태그의 개수를 얻어 변수 checkedHobbyCnt 저장하기
+			var checkedConfirmCnt = $(".confirm:checked").length;
+			// checkedHobbyCnt 변수 안의 데이터 1개 미만이면
+			// 즉 체크 된 놈이 1개 미만이면
+			if( checkedConfirmCnt<1 ){
+				// 경고창 띄우기
+				// 함수 중단 하기
+				alert("동의는 필수입니다.")
+				return;
+
+			}
+
+			//--------------------------------
+			// confirm 함수 호출로 confirm 상자를 열고 확인 버튼을 누르면
+			//--------------------------------
+			if( confirm("정말 가입하시겠습니까?") ){
+				alert(" 회원가입 성공.");
+				location.replace("loginForm.html");
+		}
 		}
 
 
@@ -281,4 +324,3 @@
 </body>
 
 </html>
-
