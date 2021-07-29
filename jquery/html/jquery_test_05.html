@@ -1,0 +1,60 @@
+
+<html>
+<head>
+	<meta charset="UTF-8">
+	<script src="jquery-1.11.0.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			//
+			//
+			//
+			$(".dogList tr").eq(0).prepend("<th>번호");
+			//
+			//
+			//
+			for(i=1; i<100; i++){
+				//
+				//
+				//
+				$(".dogList tr").eq(i).prepend("<th>"+i+"");
+			}
+			
+			
+			
+			
+			
+			
+			//---------------------------------------------
+			//<반복문 미사용 시>
+			//각 tr에 해당되는 td추가를 위한 수동반복문을 사용
+			//$(".클래스 이름[후손표시를 위한 공백한칸 후]해당 tr").eq(인덱스번호)
+			//.prepend[첫째 자식으로 html코드를 삽입하기 위한 코드]("추가하고자 하는 코드 내용")
+			//---------------------------------------------
+			//$(".dogList tr").eq(1).prepend("<th>1");
+			//$(".dogList tr").eq(2).prepend("<th>2");
+			//$(".dogList tr").eq(3).prepend("<th>3");
+			//$(".dogList tr").eq(4).prepend("<th>4");
+			//$(".dogList tr").eq(5).prepend("<th>5");
+
+		});
+	</script>
+	
+</head>
+
+<body><center>
+	<table class="dogList" border=1  cellpadding=4 style="border-collapse:collapse">
+		<tr>
+			<th bgcolor="gray">개이름
+		<tr>
+			<td>진도개
+		<tr>
+			<td>셰퍼드
+		<tr>
+			<td>비글
+		<tr>
+			<td>삽살개
+		<tr>
+			<td>풍산개
+	</table>
+</body>
+</html>
