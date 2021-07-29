@@ -5,8 +5,49 @@
 	<script src="jquery-1.11.0.min.js"></script>
 	<script>
 		$(document).ready(function() {
-			$(".reserve").click(function(){
-				var
+			$(".reverse").click(function(){
+				/*
+				var obj1 = $("[name=hobby]").eq(0).prop("checked");
+				if(obj1==true){
+					$("[name=hobby]").eq(0).prop("checked", false);
+				}
+				else{
+					$("[name=hobby]").eq(0).prop("checked", true);
+				};
+				var obj2 = $("[name=hobby]").eq(1).prop("checked");
+				if(obj2==true){
+					$("[name=hobby]").eq(1).prop("checked", false);
+				}
+				else{
+					$("[name=hobby]").eq(1).prop("checked", true);
+				};
+				var obj3 = $("[name=hobby]").eq(2).prop("checked");
+				if(obj3==true){
+					$("[name=hobby]").eq(2).prop("checked", false);
+				}
+				else{
+					$("[name=hobby]").eq(2).prop("checked", true);
+				};
+				var obj4 = $("[name=hobby]").eq(3).prop("checked");
+				if(obj4==true){
+					$("[name=hobby]").eq(3).prop("checked", false);
+				}
+				else{
+					$("[name=hobby]").eq(3).prop("checked", true);
+				};
+				*/
+				
+				for(i=0; i<$("[name=hobby]").length; i++){
+					var obji = $("[name=hobby]").eq(i).prop("checked");
+				if(obji==true){0
+					$("[name=hobby]").eq(i).prop("checked", false);
+				}
+				else{
+					$("[name=hobby]").eq(i).prop("checked", true);
+				}
+				};
+			
+				
 			});
 		});
 	</script>
