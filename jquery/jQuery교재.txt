@@ -1366,4 +1366,18 @@ double xxx = ddd.vvv().nnn;  실수형 밑에 있는 자료형은 다 들어갈 
 
 참조형(객체 메모리 위치 주소값) - ddd안에
 
+$(".xxx).   메소드
+$함수 호출
+JQuery객체의 메위주가 리턴
+    ''  는 class = xxx 을 가진 태그를 관리하고 있다.
 
+var 변수명 = $(".xxx);
+변수명.메소드()
+
+JQuery에서 this에 대한 설명?(면접)
+선택자(selector)
+익명함수 안에서 JQuery 객체가 막 잡은 그 태그를 지칭하는 선택자
+예 -> var obj = $("form table tr");
+                obj.each(function(i)) {
+                var.thisObj = $(this);
+                });

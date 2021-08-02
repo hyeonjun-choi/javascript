@@ -9,6 +9,23 @@ jquery_09_searching.html
 	<style>.style1 { background-color: #00f; color: #fff; } </style>
 	<script src="jquery-1.11.0.min.js"></script>
 	<script>
+		//
+		// 화면에 보이는 tr태그의 짝수행, 홀수행의 배경색을 지정하는 함수 선언
+		//
+		function inputBgColor_to_tr(
+		trsObj			//화면에 보이거나 안보이게 할 대상이 되는 tr 태그를 관리하는 JQuery 객체 메위주
+		, oddBgColor	//홀수번째 tr태그 배경색
+		, evenColor		//짝수번째 tr태그 배경색
+		){
+			//oddBgColor = "yellow"; evencolor = "lightgray";(편법플레이)
+			// tr 태그 중 화면에 보이는 tr 태그를 관리하는 JQuery객체의 메위주 얻기
+			var visibleTrsObj = trsObj.filter(":visible")
+
+			// tr 태그 중 화면에 보이는 tr 중 홀수 tr 만 골라서 배경색을 추가
+			visibleTrsObj.filter(":even").css("background-color",oddBgColor );
+			// tr 태그 중 화면에 보이는 tr 중 짝수 tr 만 골라서 배경색을 추가
+			visibleTrsObj.filter(":odd").css("background-color",evenColor );
+		}
 		$(document).ready(function() {
 			//-------------------------------------------------------------
 			// qustn tableObj 선언하고 class=sungjuk을 가진 태그 관리
@@ -21,6 +38,13 @@ jquery_09_searching.html
 			//-------------------------------------------------------------
 			//tableObj.find("thead tr").attr("bgcolor","lightblue")
 			tableObj.find("thead tr").css("background-color","lightblue")
+
+			//-------------------------------------------------------------
+			// inputBgColor_to_tr 함수를 호출하여 화면에 보이는 tr 태그의 짝, 홀 배경색상을 넣어주기
+			//-------------------------------------------------------------
+			inputBgColor_to_tr( tableObj.find("tbody tr"), "yellow", "lightblue" );
+			
+			/*
 			//-------------------------------------------------------------
 			// tbody 태그 안의 짝수 tr의 배경색을 lightblue로 하기
 			//-------------------------------------------------------------
@@ -29,6 +53,8 @@ jquery_09_searching.html
 			// tbody 태그 안의 홀수 tr의 배경색을 white로 하기
 			//-------------------------------------------------------------
 			tableObj.find("tbody tr:even").css("background-color","yellow")
+			*/
+
 
 			//-------------------------------------------------------------
 			// class=search 가진 태그에 click 이벤트가 일어나면
@@ -40,7 +66,8 @@ jquery_09_searching.html
 				//-------------------------------------------------------------
 				var keyword1 = $(".keyword1").val();
 				//-------------------------------------------------------------
-				//  입력된 키워드값이 공백으로 구성되거나 또는 비어 있으면 경고하고 키워드 비우고 검색 중지
+				// 입력된 키워드값이 공백으로 구성되거나 또는 비어 있으면 경고하고 키워드 비우고 검색 중지
+				// 활용 문구 - if문, split(" ").join("")==""
 				//-------------------------------------------------------------
 				//alert(keyword1);
 				if( keyword1.split(" ").join("")=="" ){
@@ -58,24 +85,24 @@ jquery_09_searching.html
 				//-------------------------------------------------------------
 				// keyword1 = keyword1.trim();
 				keyword1 = $.trim(keyword1);
-				//
+				//-------------------------------------------------------------
 				// 입력된 키워드값을 소문자로 바꿈.
 				// 영어는 비교할 때 대소문자를 소문자 또는 대문자로 바꾼 후 비교해야 함
-				//
+				//-------------------------------------------------------------
 				keyword1 = keyword1.toLowerCase();
-				//
+				//-------------------------------------------------------------
 				// 변수 trsObj 선언하고 class=sungjuk 가진 태그 후손의 tbody 태그 후손의
 				// tr 태그(=현재 17개 tr)를 관리하는 JQuery 객체의 메위주를 변수 trsObj에 저장하기
-				//
+				//-------------------------------------------------------------
 				var trsObj = tableObj.find('tbody tr');
-				//
+				//-------------------------------------------------------------
 				// table 태그 후손 중 tbody 후손 중 모든 tr을 감추기
-				//
+				//-------------------------------------------------------------
 				trsObj.hide();
-				//
+				//-------------------------------------------------------------
 				// 검색 대상이 되는 tr 태그들 차례대로 접근해서 
 				// tr 내부에 검색 키워드를 가지고 있으면 화면에 보이기
-				//
+				//-------------------------------------------------------------
 				trsObj.each( function( ){
 					// i번째 tr태그를 관리하는 JQuery 객체의 메위주를 얻어서 변수 trsObj에 저장
 					var trObj = $(this);
@@ -88,23 +115,8 @@ jquery_09_searching.html
 					//alert(text1 + " / " + text2 + " / " + text3)
 
 					if( text1.indexOf(keyword1)>=0 || text2.indexOf(keyword1)>=0 || text3.indexOf(keyword1)>=0 ) {
-						trObj.show().visible
+						trObj.show();
 					}
-			
-			//-------------------------------------------------------------
-			// thead 태그 안의 tr의 배경색ㅇ르 lightblue로 하기
-			// JQuery 객체의 css메소드를 호출하여 css차원에서 배경색을 lightblue로 하기
-			//-------------------------------------------------------------
-			//tableObj.find("thead tr").attr("bgcolor","lightblue")
-			tableObj.find("thead tr").css("background-color","lightblue")
-			//-------------------------------------------------------------
-			// tbody 태그 안의 짝수 tr의 배경색을 lightblue로 하기
-			//-------------------------------------------------------------
-			tableObj.find("tbody tr:odd").css("background-color","lightblue")
-			//-------------------------------------------------------------
-			// tbody 태그 안의 홀수 tr의 배경색을 white로 하기
-			//-------------------------------------------------------------
-			tableObj.find("tbody tr:even").css("background-color","yellow")
 				
 			
 			//-------------------------------------------------------------
@@ -117,12 +129,13 @@ jquery_09_searching.html
 				trsObj.focus();
 			})
 
+				});
+			//-------------------------------------------------------------
+			// inputBgColor_to_tr 함수를 호출하여 검색결과로 화면에 보이는 tr 태그의 
+			// 짝, 홀 배경색상을 넣어주기
+			//-------------------------------------------------------------
+			inputBgColor_to_tr( trsObj, "yellow", "lightblue" );
 
-
-
-
-
-				});	
 			});
 		}); 
 	</script>
