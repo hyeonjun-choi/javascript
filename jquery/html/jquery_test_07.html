@@ -19,6 +19,8 @@ jquery_09_searching.html
 		){
 			//oddBgColor = "yellow"; evencolor = "lightgray";(편법플레이)
 			// tr 태그 중 화면에 보이는 tr 태그를 관리하는 JQuery객체의 메위주 얻기
+			// 화면에 보이는 tr 태그를 변수선언 해주기 위해 TrsObj에 visible을 붙인 것이다.
+			// filter 는 화면에 보이는 tr태그를 간추리기 위한 장치로 괄호 안에 visible을 넣음
 			var visibleTrsObj = trsObj.filter(":visible")
 
 			// tr 태그 중 화면에 보이는 tr 중 홀수 tr 만 골라서 배경색을 추가
