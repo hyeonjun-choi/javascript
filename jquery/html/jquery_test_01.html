@@ -33,17 +33,24 @@ jquery_test_01.html
 			//-------------------------------------------
 			// id="staff"가 있는 태그의 후손 중, thead 태그 안의 후손 중 tr 태그의
 			// 배경색을 gray 색상으로 설정하기
+			// 전체 테이블 오브젝트에 대한 변수를 선언하므로 var tableObj로 선언
+			// 클래스명이 아닌 id로 할 경우 $()안에 #을 붙인다.
 			//-------------------------------------------
 			var tableobj = $("#staff");
+			// 전체 tr 중 thead 중 후손 tr을 찾아서 적용시켜야 하므로 find사용 후 
+			// bgcolor, gray 적용을 위해 attr을 사용함 
+			// attr("태그속성명","태그속성값")
 			tableobj.find("thead tr").attr("bgcolor","gray")
 			//-------------------------------------------
 			// id="staff"가 있는 태그의 후손 중, <tbody> 후손의 tr 중
 			// 인덱스번호가 홀수(사람입장에선 짝수)인 놈에 배경색을 lightgray 바꿈
+			// odd - 인덱스번호가 홀수(사람입장에선 짝수)인 tr을 찾을 때
 			//------------------------------------------- 
 			tableobj.find("tbody tr:odd").attr("bgcolor","lightgray")
 			//-------------------------------------------
 			// id="staff"가 있는 태그의 후손 중, <tbody> 후손의 tr 중
 			// 인덱스번호가 홀수(사람입장에선 짝수)인 놈에 배경색을 #FFFFFF 바꿈
+			// even - 인덱스번호가 짝수(사람입장에선 홀수)인 tr을 찾을 때
 			//-------------------------------------------
 			tableobj.find("tbody tr:even").attr("bgcolor","#FFFFFF")
 
@@ -102,6 +109,7 @@ jquery_test_01.html
 					//$(".msg").text(no)
 					// tbody 안의 각 tr태그 안에서 위에서 구한 순서번호에 해당하는
 					// td 태그에 class=style1을 삽입하기
+					// 위의 클래스 삽입을 위해 addClass를 사용
 					tableobj.find("tbody td:nth-child("+no+")").addClass("style1");
 
 					// $(".msg").text(no)

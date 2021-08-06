@@ -9,41 +9,214 @@ jquery_test_15.html
 	<style>.style1 { background-color: #00f; color: #fff; } </style>
 	<script src="jquery-1.11.0.min.js"></script>
 	<script>
-		//-------------------------------------------------------------
-		// 화면에 보이는 tr태그의 짝수행, 홀수행의 배경색을 지정하는 함수 선언
-		//-------------------------------------------------------------
-		function inputBgColor_to_tr(
-		trsObj			//화면에 보이거나 안보이게 할 대상이 되는 tr 태그를 관리하는 JQuery 객체 메위주
-		, oddBgColor	//홀수번째 tr태그 배경색
-		, evenColor		//짝수번째 tr태그 배경색
-		){
-			//oddBgColor = "yellow"; evencolor = "lightgray";(편법플레이)
-			// tr 태그 중 화면에 보이는 tr 태그를 관리하는 JQuery객체의 메위주 얻기
-			// 화면에 보이는 tr 태그를 변수선언 해주기 위해 TrsObj에 visible을 붙인 것이다.
-			// filter 는 화면에 보이는 tr태그를 간추리기 위한 장치로 괄호 안에 visible을 넣음
-			var visibleTrsObj = trsObj.filter(":visible")
-
-			// tr 태그 중 화면에 보이는 tr 중 홀수 tr 만 골라서 배경색을 추가
-			visibleTrsObj.filter(":even").css("background-color",oddBgColor );
-			// tr 태그 중 화면에 보이는 tr 중 짝수 tr 만 골라서 배경색을 추가
-			visibleTrsObj.filter(":odd").css("background-color",evenColor );
-		}
-		
 		$(document).ready(function() {
-			var tableObj = $(".sungjuk");
-			tableObj.find("thead tr").css("background-color","lightblue")
-			inputBgColor_to_tr( tableObj.find("tbody tr"), "yellow", "lightblue" );
 
-		$(".search").filter("[value=A]").prop("checked")
-		$(".search").filter("[value=B]").prop("checked")
-		$(".search").filter("[value=C]").prop("checked")
-		$(".search").filter("[value=D]").prop("checked")
-		$(".search").filter("[value=F]").prop("checked")
+			//--------------------------------------------------------
+			// 검색된 tr, 즉 화면에 보이는 tr의 개수를
+			// class-count 가진 태그안에 삽입하는 함수 호출하기
+			//--------------------------------------------------------
+			inputSearchCnt();			
+			//--------------------------------------------------------
+			// 검색 결과물을 내장한 table 태그 안에 역순 일련번호가 있는 새로운 1열을 넣어주거나
+			// 수정해주는 inputFirstColumn 함수 호출하기
+			//--------------------------------------------------------
+			inputFirstColumn( $('.sungjuk') )
+
+			//--------------------------------------------------------
+			// class=search가진 태그에 click 이벤트가 일어나면
+			// 검색을 구현하는 코딩을 실행하게 설정
+			//--------------------------------------------------------
+			$('.search').bind("click", function(){
+				var trsObj = $('.sungjuk tbody tr')
+				//--------------------------------------------------------
+				// 체크된 학점의 개수를 얻기
+				//--------------------------------------------------------
+				var checkedHakjumCnt = $("[name='hakjum']").filter(":checked").size;
+				//var checkedHakjumCnt = $("[name='hakjum']:checked").size; 위와 동일함
+				//if. 만약 검색 조건이 없다면 -- 결과값이 아예 없거나
+				//							-- 아예 다 보여주거나  <-
+				if( checkedHakjumCnt==0 ){
+					//검색조건이 없을때 아예 다 보여주도록 설정 show
+					trsObj.show()
+					return;
+				}
+				//--------------------------------------------------------
+				// 모든 tr을 감추기
+				//--------------------------------------------------------
+				trsObj.hide()
+				//--------------------------------------------------------
+				// 체크된 학점을 Array 객체에 저장하기
+				//--------------------------------------------------------
+				var hakjums = [];	// var hakjums = new Array();
+
+				$("[name='hakjum']").each(function(){
+					//--------------------------------------------------------
+					// i번째 name='hakjum'을 가진 놈을 관리하는 JQuery 객체의
+					// 메위주를 변수 thisObj에 저장하기
+					//--------------------------------------------------------
+					var thisObj = $(this);
+					//--------------------------------------------------------
+					// 만약에 i번째 놈이 체크가 되어 있으면 Array 객체에 value값 저장하기
+					//--------------------------------------------------------
+					if( thisObj.prop("checked")){
+					//if( thisObj.filter(":checked").length==1 ){
+					//$('선택자1').is('선택자2') 선택자1과 2가 동일하면 true리턴
+					//if( thisObj.is(":checked") ){		
+						hakjums.push( thisObj.val() )
+					}					
+				})
+				alert( hakjums.join(" ") )
+				//--------------------------------------------------------
+				// 검색 대상이 되는 tr에 차례대로 접근해서 각 tr 내부에 체크한 학점에 맞는 평균이
+				// 있으면 tr 태그 보이게 한다.
+				//--------------------------------------------------------
+				trsObj.each( function(i){
+					//--------------------------------------------------------
+					// i번째 tr 태그 관리하는 JQuery 객체를 생성하고 
+					// 객체의 메위주를 변수 thisTrObj에 저장하기
+					//--------------------------------------------------------
+					var thisTrObj = $(this);
+					//--------------------------------------------------------
+					// i번째 tr 태그 안의 3번째 td가 감싸고 있는 문자,
+					// 즉, 평균을 얻은 후 avg 변수에 저장
+					//--------------------------------------------------------
+					var avg = thisTrObj.find("td:eq(3)").text();
+					// var avg = thisTrObj.find("td").eq(3).text();
+					// var avg = thisTrObj.children("td:eq(3)").text();
+					// var avg = thisTrObj.children("td").eq(3).text();
+					avg = $.trim(avg);
+					//if( avg.indexOf(" ")>=0 ){alert("ㄴㅇㄹㅇㄹㄴㅇ")}
+					avg = parseInt(avg,10);
+
+
+					// 주어진 문제 상황에 맞는 변수 사용
+					// if/else if문 활용
+					var hakjum = "A";
+					if( avg>80 && avg<90 ) 		{hakjum = "B"; }
+					else if( avg>70 && avg<80 ) {hakjum = "C"; }
+					else if( avg>60 && avg<70 ) {hakjum = "D"; }
+					else if( avg>0 && avg<60 ) 	{hakjum = "F"; }
+					//--------------------------------------------------------
+					// i번째 tr 내부의 평균에 해당하는 학점이
+					// Array 객체의 배열변수에 존재하면
+					// 변수 flag에 true저장하고 반복문 중단하기
+					//--------------------------------------------------------
+					var flag = false;
+					for( var j=0; j<hakjums.length; j++ ){
+						//만약에 j번째 배열변수안의 값이 hakjum 변수안의 값과 같으면
+						if( hakjums[j]==hakjum )	{ flag = true; break; }
+					}
+					//--------------------------------------------------------
+					// flag에 true가 있으면 i번째 tr보이기
+					//--------------------------------------------------------
+					if( flag ) { thisTrObj.show(); }
+					/*
+					//--------------------------------------------------------
+					// i번째 tr 내부의 평균이 Array 객체에 저장된
+					// 학점에 맞는 평균이면 i번째 tr을 보이고 반복문을 중단하기
+					//--------------------------------------------------------
+					var flag = false;
+					for( var j=0; j<hakjums.length; j++ ){
+					// 만약에 j번째 배열변수안의 값이 "A"이고 avg 변수안의 값이 90~100 사이면 i번째 tr 보이기
+					if( hakjums[j]=="A" && 90<=avg && 100>=avg) { flag = true; break; }
+					// 만약에 j번째 배열변수안의 값이 "B"이고 avg 변수안의 값이 80~90 사이면 i번째 tr 보이기
+					if( hakjums[j]=="B" && 80<=avg && 90>avg) { flag = true; break; }
+					// 만약에 j번째 배열변수안의 값이 "C"이고 avg 변수안의 값이 70~80 사이면 i번째 tr 보이기
+					if( hakjums[j]=="C" && 70<=avg && 80>avg) { flag = true; break; }
+					// 만약에 j번째 배열변수안의 값이 "D"이고 avg 변수안의 값이 60~70 사이면 i번째 tr 보이기
+					if( hakjums[j]=="D" && 60<=avg && 70>avg) { flag = true; break; }
+					// 만약에 j번째 배열변수안의 값이 "F"이고 avg 변수안의 값이 0~60 사이면 i번째 tr 보이기
+					if( hakjums[j]=="F" && 0<=avg && 60>avg) { flag = true; break; }
+				}
+				
+				*/
+			});
+			// 각 필요한 부분 요소에 넣어줘야지 정상적으로 원하는 결과값이 나옴
+			inputSearchCnt();
+			inputFirstColumn( $('.sungjuk') )
+		});
+
+		//--------------------------------------------------------
+		// class=allsearch가진 태그에 click 이벤트가 일어나면
+		// 체크를 모두 풀고 모든 행을 보이는 코딩을 실행하게 설정
+		//--------------------------------------------------------
+		// 
+		$('.allSearch').bind("click", function(){
+			//체크를 모두 풀기
+			$("[name='hakjum']").prop("checked",false);
+			//검색 대상이 되는 모든 행을 보이기
+			$('.sungjuk tbody tr').show();
+			inputSearchCnt();
+			inputFirstColumn( $('.sungjuk') )
+		});
 
 		
+	}); 
 
+	//테이블 상단에 총 갯수 추가
+	//테이블 옆에 역순 일련 번호 들어간 열 추가
 
-		}); 
+	//----------------------------------------------------------------
+	// class=count 가진 태그 안에 검색결과물
+	// 즉, 화면에 보이는 tr태그의 총개수 삽입하는 함수 선언
+	// inputSearchCnt 활용
+	//----------------------------------------------------------------
+	function inputSearchCnt(){
+		$(".count").text( $(".sungjuk tr:visible").length-1 + "개" );
+	}
+
+	//----------------------------------------------------------------
+	// 검색결과물의 table 태그에 일련번호가 있는 새로운 1열 삽입하기
+	// 그런데 이미 있다면 화면에 보이는 행의 일련번호를 새로운 일련번호로 수정
+	//----------------------------------------------------------------
+	function inputFirstColumn( tableObj ){
+		//----------------------------------------------------------------
+		// 검색 대상인 모든 tr태그를 관리하는 JQuery 객체 구해 변수 trsObj에 저장하기
+		//----------------------------------------------------------------
+		var trsObj = tableObj.find("tr");
+		//----------------------------------------------------------------
+		// 검색 대상인 모든 tr 태그 중 화면에 보이는
+		// tr를 관리하는 JQuery 객체를 구해 변수 visible_trsObj에 저장하기
+		//----------------------------------------------------------------
+		var visible_trsObj = trsObj.filter(":visible");
+		//----------------------------------------------------------------
+		// 화면에 보이는 tr의 개수 구해 변수 visibleTrCnt에 저장하기
+		//----------------------------------------------------------------
+		var visibleTrCnt = visible_trsObj.length-1;
+		//----------------------------------------------------------------
+		// table 태그 안의 첫 tr 안의 1열에 "번호" 컬럼이 있으면 flag 변수에 true 저장하기
+		//----------------------------------------------------------------
+		var flag = false;
+		var text = trsObj.first().find("th:eq(0)").text();
+		text = $.trim(text);
+		if( text=="번호" ) {flag = true;}
+		//----------------------------------------------------------------
+		// flag 변수에 true가 저장되어 있으면, 즉 table 태그의 1행 1열에 "번호" 컬럼이 있으면
+		//----------------------------------------------------------------
+		if( flag ){
+			// 보이는 tr 태그 안의 번호 컬럼 옆에 새로운 역순 일련번호를 구해 덮어쓰기
+			visible_trsObj.each(function(i){
+				if( i>0 ) {
+					$(this).find("td:eq(0)").text( visibleTrCnt-- );
+				}
+			});
+		}
+		//----------------------------------------------------------------
+		// flag 변수에 false가 저장되어 있으면, 즉 table 태그의 1행 1열에 "번호" 컬럼이 없으면 
+		//----------------------------------------------------------------
+		else{
+			// 모든 tr 태그 안에 새로운 1열을 삽입하기
+			trsObj.each(function(i){
+				var thisTrObj = $(this);
+				if( i==0 ){
+					thisTrObj.prepend("<th>번호")
+				}
+				else{
+					thisTrObj.prepend( "<td>" + (visibleTrCnt--) )
+				}
+			});
+		}
+	}
 	</script>
 </head>
 <body><center>
@@ -60,7 +233,7 @@ jquery_test_15.html
 <div class="count"></div>
 <table border="1" cellpadding=5 class="sungjuk" style="border-collapse:collapse;">
 	<thead>
-		<tr ><th>번호<th>이름<th>평균
+		<tr ><th>학생번호<th>이름<th>평균
 	</thead>
 	<tbody>
 		<tr><td>101<td>John<td>87
